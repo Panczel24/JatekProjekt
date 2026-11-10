@@ -20,7 +20,7 @@ namespace JatekProjekt
         public List<string> MagasSzintuKarakterek()
         {
             return karakterek
-                .Where(k => k.Szint > 60)
+                .Where(k => k.Szint > 70)
                 .Select(k => k.Nev)
                 .ToList();
         }
@@ -29,7 +29,7 @@ namespace JatekProjekt
         public List<string> MagusOsztalyuNevek()
         {
             return karakterek
-                 .Where(k => k.Osztaly =="Mágus")
+                 .Where(k => k.Osztaly == "Mágus")
                  .Select(k => k.Nev)
                   .ToList();
         }
@@ -68,31 +68,40 @@ namespace JatekProjekt
         // Számold meg Sum segítségével, hogy mennyi a karakterek összes aranya a szerveren!
         public int OsszesAranyMennyiseg()
         {
-            throw new NotImplementedException();
+            return karakterek.Sum(k => k.Arany);
         }
 
         // Számítsd ki Average segítségével a karakterek átlagos szintjét double értékként!
         public double AtlagSzint()
         {
-            throw new NotImplementedException();
+            return Convert.ToDouble(karakterek.Average(k => k.Szint));
+
         }
 
         // Állapítsd meg Any segítségével, hogy van-e olyan "Tolvaj" osztályú karakter, akinek a szintje eléri vagy meghaladja a 40-et!
         public bool VaneMagasSzintuTolvaj()
         {
-            throw new NotImplementedException();
+            return karakterek.Any(k => k.Osztaly == "Tolvaj" && k.Szint >= 40);
         }
 
         // Ellenőrizd Any segítségével, hogy létezik-e olyan karakter, akinek 10 000 aranynál több van a zsebében!
         public bool VanETizEzerAranynalTobb()
         {
-            throw new NotImplementedException();
+            return karakterek.Any(k => k.Szint >= 40);
         }
 
         // Keresd meg FirstOrDefault segítségével az első olyan karaktert, akinek az aranya meghaladja az 5000-et!
         public Karakter LegelsoOvenKarakter()
         {
-            throw new NotImplementedException();
+            foreach (Karakter k in karakterek)
+            {
+                if (k.Arany > 5000)
+                {
+                    return k;
+                }
+            }
+
+            return null;
         }
 
 
